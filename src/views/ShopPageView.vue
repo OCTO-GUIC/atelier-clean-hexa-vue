@@ -18,6 +18,7 @@ const catalogViewModel = ref<WeaponsCatalogViewModel>()
 onMounted(() => {
   const usecase = new GetAllWeaponsUsecase(new WeaponsRepositoryInMemory())
   usecase.execute(
+    1000,
     new WeaponsCataloguePresenter((weaponsCatalogViewModel) => {
       catalogViewModel.value = weaponsCatalogViewModel
     }),

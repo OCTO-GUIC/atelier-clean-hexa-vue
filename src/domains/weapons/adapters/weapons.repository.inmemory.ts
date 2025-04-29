@@ -1,24 +1,12 @@
 import type { WeaponsRepository } from '../ports/weapons.repository'
-import type { Weapons } from '../getAllWeapons.usecase'
+import { Weapons } from '../getAllWeapons.usecase'
 
 export class WeaponsRepositoryInMemory implements WeaponsRepository {
   getAllWeapons(): Promise<Weapons[]> {
     return Promise.resolve<Weapons[]>([
-      {
-        id: 'arc',
-        title: 'Arc en bois pas ouf',
-        image: 'arc.png',
-      },
-      {
-        id: 'sword',
-        title: 'Epée de boisaille',
-        image: 'epee.png',
-      },
-      {
-        id: 'masse',
-        title: 'Massue gneu gneu taper',
-        image: 'massue.png',
-      },
+      new Weapons('arc', 'Arc en bois pas ouf', 'arc.png', 100),
+      new Weapons('sword', 'Epée de boisaille', 'epee.png', 300),
+      new Weapons('masse', 'Massue gneu gneu taper', 'massue.png', 1200),
     ])
   }
 }
