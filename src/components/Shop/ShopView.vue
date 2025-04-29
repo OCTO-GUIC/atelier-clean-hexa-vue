@@ -8,6 +8,7 @@
           :image="weapon.image"
           :add-to-cart-button="weapon.addToCartButton"
           :link="weapon.link"
+          :price="weapon.price"
         />
       </li>
     </ul>

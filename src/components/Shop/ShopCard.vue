@@ -2,6 +2,7 @@
   <div class="shopCard">
     <img :src="image" alt="" />
     <h2>{{ title }}</h2>
+    <span>Price: {{ price }}</span>
     <div class="shopCard__actions">
       <CommonButton :label="addToCartButton.label" :disabled="addToCartButton.disabled" />
       <CommonLink :label="link.label" :url="link.url" :title="link.title" />
@@ -16,6 +17,7 @@ import CommonLink, { type CommonLinkProps } from './../commons/CommonLink.vue'
 export interface ShopCardProps {
   title: string
   image: string
+  price: number
   addToCartButton: CommonButtonProps
   link: CommonLinkProps
 }

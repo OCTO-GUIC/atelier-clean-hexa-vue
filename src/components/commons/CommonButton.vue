@@ -28,5 +28,15 @@ button {
     background-color: #fff;
     color: #f58c22;
   }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+
+    &:hover {
+      background-color: #f58c22;
+      color: #fff;
+    }
+  }
 }
 </style>

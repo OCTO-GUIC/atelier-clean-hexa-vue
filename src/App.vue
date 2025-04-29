@@ -4,6 +4,7 @@
       <RouterLink to="/">Shop</RouterLink>
       <RouterLink to="/battle">Battle</RouterLink>
     </nav>
+    <SoldierHeader />
   </header>
   <main>
     <RouterView />
@@ -15,6 +16,7 @@
 
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
+import SoldierHeader from './components/Header/SoldierHeader.vue'
 </script>
 
 <style scoped>
