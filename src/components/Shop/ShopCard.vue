@@ -6,7 +6,11 @@
       Prix : {{ price }} <img src="../../../public/images/gold.png" class="shopCard__gold" />
     </span>
     <div class="shopCard__actions">
-      <CommonButton :label="addToCartButton.label" :disabled="addToCartButton.disabled" />
+      <CommonButton
+        :label="addToCartButton.label"
+        :disabled="addToCartButton.disabled"
+        :on-click="buy"
+      />
       <!-- <CommonLink :label="link.label" :url="link.url" :title="link.title" /> -->
     </div>
   </div>
@@ -14,6 +18,9 @@
 
 <script setup lang="ts">
 import CommonButton, { type CommonButtonProps } from './../commons/CommonButton.vue'
+import { BuyWeaponUsecase } from '@/domains/shop/buyWeapon.usecase.ts'
+import { ShopEventBus } from '@/domains/shop/shop.eventBus.ts'
+import { ShopRepositoryInmemory } from '@/domains/shop/adapters/shop.repository.inmemory.ts'
 
 export interface ShopCardProps {
   title: string
@@ -22,7 +29,14 @@ export interface ShopCardProps {
   addToCartButton: CommonButtonProps
 }
 
-const { title, image, addToCartButton } = defineProps<ShopCardProps>()
+const { title, image, addToCartButton, price } = defineProps<ShopCardProps>()
+
+const shopEventBus = ShopEventBus.getInstance()
+const buyWeaponUseCase = new BuyWeaponUsecase(shopEventBus, new ShopRepositoryInmemory())
+
+const buy = () => {
+  buyWeaponUseCase.execute('soldier-1', price)
+}
 </script>
 
 <style scoped>

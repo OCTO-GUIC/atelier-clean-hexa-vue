@@ -9,15 +9,29 @@ import {
 } from '@/domains/soldier/adapters/soldier.presenter.impl'
 import { SoldierRepositoryInMemory } from '@/domains/soldier/adapters/soldier.repository.inmemory'
 import { GetSoldierGoldUsecase } from '@/domains/soldier/getSoldierGold.usecase'
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
+import { ShopEventBus } from '@/domains/shop/shop.eventBus.ts'
 
 const soldierViewModel = ref<SoldierViewModel>()
-const getSoldierUsecase = new GetSoldierGoldUsecase(new SoldierRepositoryInMemory())
-getSoldierUsecase.execute(
-  new SoldierPresenterImpl((vm) => {
-    soldierViewModel.value = vm
-  }),
-)
+const getSoldierUsecase = new GetSoldierGoldUsecase(SoldierRepositoryInMemory.getInstance())
+const shopEventBus = ShopEventBus.getInstance()
+const getSoldier = ()=> {
+  getSoldierUsecase.execute(
+    new SoldierPresenterImpl((vm) => {
+      soldierViewModel.value = vm
+    })
+  )
+}
+onMounted(() => {
+  getSoldier();
+  shopEventBus.subscribe(
+    'SoldierHeader',
+    'weaponBought',
+    () => {
+      getSoldier()
+    }
+  )
+})
 </script>
 
 <style scoped>

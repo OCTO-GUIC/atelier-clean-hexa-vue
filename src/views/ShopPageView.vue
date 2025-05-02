@@ -12,16 +12,27 @@ import {
 import { WeaponsRepositoryInMemory } from '@/domains/weapons/adapters/weapons.repository.inmemory'
 import { GetAllWeaponsUsecase } from '@/domains/weapons/getAllWeapons.usecase'
 import { onMounted, ref } from 'vue'
+import { ShopEventBus } from '@/domains/shop/shop.eventBus.ts'
+import {
+  SoldierRepositoryInMemory
+} from '@/domains/soldier/adapters/soldier.repository.inmemory.ts'
 
 const catalogViewModel = ref<WeaponsCatalogViewModel>()
+const shopEventBus = ShopEventBus.getInstance()
+const usecase = new GetAllWeaponsUsecase(new WeaponsRepositoryInMemory())
 
-onMounted(() => {
-  const usecase = new GetAllWeaponsUsecase(new WeaponsRepositoryInMemory())
+const getCatalog = () => {
   usecase.execute(
-    1000,
+    SoldierRepositoryInMemory.getInstance().getSoldier().getGold(),
     new WeaponsCataloguePresenter((weaponsCatalogViewModel) => {
       catalogViewModel.value = weaponsCatalogViewModel
     }),
   )
+}
+onMounted(() => {
+  getCatalog()
+  shopEventBus.subscribe('SoldierHeader', 'weaponBought', () => {
+    getCatalog()
+  })
 })
 </script>

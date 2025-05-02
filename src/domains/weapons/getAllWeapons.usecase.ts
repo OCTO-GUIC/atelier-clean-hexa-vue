@@ -24,7 +24,7 @@ export class Weapons {
   }
 
   canBuy(amountOfGoldAvailable: number): boolean {
-    return amountOfGoldAvailable > this.price
+    return amountOfGoldAvailable >= this.price
   }
 }
 

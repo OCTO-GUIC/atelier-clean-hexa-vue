@@ -12,7 +12,7 @@ export class Soldier {
 export class GetSoldierGoldUsecase {
   constructor(private readonly soldierRepository: SoldierRepository) {}
   execute(presenter: SoldierPresenter) {
-    const soldier = this.soldierRepository.getSolider()
+    const soldier = this.soldierRepository.getSoldier()
     presenter.presents(soldier)
   }
 }

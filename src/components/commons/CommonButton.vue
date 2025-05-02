@@ -1,5 +1,5 @@
 <template>
-  <button :disabled="disabled" :onclick="() => {}">
+  <button :disabled="disabled" @click="onClick">
     {{ label }}
   </button>
 </template>
@@ -8,6 +8,7 @@
 export type CommonButtonProps = {
   label: string
   disabled?: boolean
+  onClick: () => void
 }
 defineProps<CommonButtonProps>()
 </script>

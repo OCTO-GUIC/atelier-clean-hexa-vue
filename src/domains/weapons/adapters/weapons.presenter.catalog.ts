@@ -9,11 +9,6 @@ export type WeaponsCatalogItemViewModel = {
     disabled: boolean
     label: string
   }
-  link: {
-    label: string
-    url: string
-    title: string
-  }
 }
 export type WeaponsCatalogViewModel = {
   items: WeaponsCatalogItemViewModel[]
@@ -31,12 +26,7 @@ export class WeaponsCataloguePresenter implements WeaponsPresenter {
         price: w.price,
         addToCartButton: {
           disabled: !w.canBuy(amountOfGoldAvailable),
-          label: 'Ajouter au panier',
-        },
-        link: {
-          label: 'Consulter la page',
-          url: '#',
-          title: `Consulter la page ${w.title}`,
+          label: 'Acheter',
         },
       })),
     })
