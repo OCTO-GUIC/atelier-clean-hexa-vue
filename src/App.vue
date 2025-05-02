@@ -23,8 +23,21 @@ import SoldierHeader from './components/Header/SoldierHeader.vue'
 header,
 footer {
   padding: 1rem;
-  background-color: #3d3d3d;
+  background-color: rgb(54, 3, 98);
   color: white;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+nav a {
+  padding: 0 0.5rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #fff;
 }
 
 main {

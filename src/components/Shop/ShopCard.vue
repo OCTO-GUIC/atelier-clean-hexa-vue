@@ -1,18 +1,20 @@
 <template>
   <div class="shopCard">
-    <img :src="image" alt="" />
+    <img :src="image" alt="" class="shopCard__imgWeapon" />
     <h2>{{ title }}</h2>
-    <span>Price: {{ price }}</span>
+    <span class="shopCard__price">
+      Prix : {{ price }} <img src="../../../public/images/gold.png" class="shopCard__gold" />
+    </span>
     <div class="shopCard__actions">
       <CommonButton :label="addToCartButton.label" :disabled="addToCartButton.disabled" />
-      <CommonLink :label="link.label" :url="link.url" :title="link.title" />
+      <!-- <CommonLink :label="link.label" :url="link.url" :title="link.title" /> -->
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import CommonButton, { type CommonButtonProps } from './../commons/CommonButton.vue'
-import CommonLink, { type CommonLinkProps } from './../commons/CommonLink.vue'
+// import CommonLink, { type CommonLinkProps } from './../commons/CommonLink.vue'
 
 export interface ShopCardProps {
   title: string
@@ -33,13 +35,27 @@ const { title, image, addToCartButton, link } = defineProps<ShopCardProps>()
   text-align: center;
 
   h2 {
-    margin-bottom: 1rem;
+    margin: 1rem 0;
   }
+}
 
-  img {
-    display: block;
-    width: 100%;
-  }
+.shopCard__imgWeapon {
+  display: block;
+  height: 10rem;
+  width: auto;
+  margin: 0 auto;
+}
+
+.shopCard__price {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  gap: 0.5rem;
+}
+
+.shopCard__gold {
+  height: 2rem;
 }
 
 .shopCard__actions {

@@ -1,6 +1,6 @@
 <template>
   <div v-if="!catalogViewModel">Chargement en cours ...</div>
-  <ShopView v-else heading="Le shoop" :weapons="catalogViewModel.items" />
+  <ShopView v-else heading="Le shop" :weapons="catalogViewModel.items" />
 </template>
 
 <script setup lang="ts">

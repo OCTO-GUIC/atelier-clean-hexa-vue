@@ -14,19 +14,19 @@ defineProps<CommonButtonProps>()
 
 <style scoped>
 button {
-  padding: 0.5rem;
+  padding: 0.5rem 1rem;
   cursor: pointer;
-  background-color: #f58c22;
+  background-color: rgb(54, 3, 98);
   color: white;
   text-transform: uppercase;
   letter-spacing: 2px;
   font-weight: 600;
-  border: 2px solid #f58c22;
+  border: 2px solid rgb(54, 3, 98);
   transition: all ease-in-out 0.3s;
 
   &:hover {
     background-color: #fff;
-    color: #f58c22;
+    color: rgb(54, 3, 98);
   }
 
   &:disabled {
@@ -34,7 +34,7 @@ button {
     cursor: not-allowed;
 
     &:hover {
-      background-color: #f58c22;
+      background-color: rgb(54, 3, 98);
       color: #fff;
     }
   }
