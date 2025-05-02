@@ -14,17 +14,15 @@
 
 <script setup lang="ts">
 import CommonButton, { type CommonButtonProps } from './../commons/CommonButton.vue'
-// import CommonLink, { type CommonLinkProps } from './../commons/CommonLink.vue'
 
 export interface ShopCardProps {
   title: string
   image: string
   price: number
   addToCartButton: CommonButtonProps
-  link: CommonLinkProps
 }
 
-const { title, image, addToCartButton, link } = defineProps<ShopCardProps>()
+const { title, image, addToCartButton } = defineProps<ShopCardProps>()
 </script>
 
 <style scoped>
