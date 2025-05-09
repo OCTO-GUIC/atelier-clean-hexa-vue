@@ -13,9 +13,7 @@ import { WeaponsRepositoryInMemory } from '@/domains/weapons/adapters/weapons.re
 import { GetAllWeaponsUsecase } from '@/domains/weapons/getAllWeapons.usecase'
 import { onMounted, ref } from 'vue'
 import { ShopEventBus } from '@/domains/shop/shop.eventBus.ts'
-import {
-  SoldierRepositoryInMemory
-} from '@/domains/soldier/adapters/soldier.repository.inmemory.ts'
+import { SoldierRepositoryInMemory } from '@/domains/soldier/adapters/soldier.repository.inmemory.ts'
 
 const catalogViewModel = ref<WeaponsCatalogViewModel>()
 const shopEventBus = ShopEventBus.getInstance()
