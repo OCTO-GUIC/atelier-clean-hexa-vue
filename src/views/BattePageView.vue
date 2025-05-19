@@ -16,12 +16,13 @@ import BattleView from '../components/Battle/BattleView.vue'
 
 const enemiesViewModel = ref<EnemiesViewModel>()
 
-const usecase = new GetAllEnnemies(new EnemiesRepositoryInMemory())
+const usecase = new GetAllEnnemies(EnemiesRepositoryInMemory.getInstance())
 
 const getEnemies = () => {
   usecase.execute(
     new EnemiesPresenterImpl((viewModel) => {
       enemiesViewModel.value = viewModel
+      console.log(viewModel)
     }),
   )
 }
@@ -31,6 +32,5 @@ onMounted(() => {
   EnemyEventBus.getInstance().subscribe('Battle', 'enemyBattle', () => {
     getEnemies()
   })
-  console.log(enemiesViewModel.value)
 })
 </script>

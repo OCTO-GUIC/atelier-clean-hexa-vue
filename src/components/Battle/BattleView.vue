@@ -3,16 +3,16 @@
     <h1>Battle</h1>
     <div class="test">
       <div v-for="enemy in enemiesViewModel.enemies" :key="enemy.name" class="ennemy">
-        <img src="../../../public/images/vilain.png" :alt="enemy.name" />
+        <img src="/images/vilain.png" :alt="enemy.name" />
         <div class="toto">
           <h2 v-text="enemy.name" />
           <div class="badge">
-            {{ enemy.healthPoint }}<img src="../../../public/images/epee.png" alt="gold" />
+            {{ enemy.healthPoint }}<img src="/images/epee.png" alt="gold" />
           </div>
         </div>
         <div class="toto">
           <CommonButton
-            label="Attaquer"
+            :label="enemy.isAlive ? 'Attaquer' : 'Mort'"
             :on-click="() => onAttack(enemy.name)"
             :disabled="!enemy.isAlive"
           />
@@ -39,7 +39,7 @@ export interface BattleViewModel {
 defineProps<BattleViewModel>()
 
 const onAttack = (enemyName: string) => {
-  const usecase = new BattleUsecase(new EnemiesRepositoryInMemory(), EnemyEventBus.getInstance())
+  const usecase = new BattleUsecase(EnemiesRepositoryInMemory.getInstance(), EnemyEventBus.getInstance())
   usecase.execute(enemyName, 10)
 }
 </script>
@@ -59,7 +59,7 @@ h1 {
   height: 100%;
   width: 100%;
   max-width: 1200px;
-  background-image: url('./public/images/arena.png');
+  background-image: url('/images/arena.png');
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
