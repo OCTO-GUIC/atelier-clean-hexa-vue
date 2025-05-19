@@ -7,7 +7,7 @@ import { Soldier } from '@/domains/soldier/getSoldier.usecase'
 export class ShopRepositoryInmemory implements ShopRepository {
   buyWeapon(soldierId: string, weaponId: string, price: number, strength: number): Promise<void> {
     const soldier = SoldierRepositoryInMemory.getInstance().getSoldier()
-    SoldierRepositoryInMemory.getInstance().saveSoldier(new Soldier(soldier.gold - price, strength))
+    SoldierRepositoryInMemory.getInstance().saveSoldier(new Soldier(soldier.gold - price, soldier.strength + strength))
     return Promise.resolve()
   }
 }
