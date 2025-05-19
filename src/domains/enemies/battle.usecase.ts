@@ -1,6 +1,7 @@
 import type { EventBus } from '@/shell/eventBus'
 import type { EnemiesRepository } from './ports/enemies.repository'
 import type { EnemyEventMap } from './enemy.eventBus'
+import type { SoldierRepository } from '@/domains/soldier/ports/soldier.repository.ts'
 
 export class BattleUsecase {
   constructor(
@@ -8,10 +9,10 @@ export class BattleUsecase {
     private readonly eventBus: EventBus<EnemyEventMap>,
   ) {}
 
-  async execute(enemyName: string, soldierStrenght: number) {
+  async execute(enemyName: string, soldierStrength: number) {
     const enemies = await this.repository.getAllEnnemies()
     const enemy = enemies.find((e) => e.name === enemyName)!
-    enemy.attack(soldierStrenght)
+    enemy.attack(soldierStrength)
     await this.repository.saveEnemy(enemy)
     this.eventBus.publish('enemyBattle', '')
   }

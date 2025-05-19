@@ -7,10 +7,14 @@ export class Weapons {
     private readonly _title: string,
     private readonly _image: string,
     private readonly _price: number,
+    private readonly _strength: number,
   ) {}
 
   public get image(): string {
     return this._image
+  }
+  public get strenght(): string {
+    return this._strength
   }
   public get title(): string {
     return this._title

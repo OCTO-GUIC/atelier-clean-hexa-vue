@@ -17,7 +17,7 @@
             :disabled="!enemy.isAlive"
           />
           <div class="badge">
-            {{ enemy.awardGold }}<img src="../../../public/images/gold.png" alt="gold" />
+            {{ enemy.awardGold }}<img src="/images/gold.png" alt="gold" />
           </div>
         </div>
       </div>
@@ -31,6 +31,9 @@ import { type EnemiesViewModel } from '@/domains/enemies/adapters/enemies.presen
 import { EnemiesRepositoryInMemory } from '@/domains/enemies/adapters/enemies.repository.inMemory'
 import { BattleUsecase } from '@/domains/enemies/battle.usecase'
 import { EnemyEventBus } from '@/domains/enemies/enemy.eventBus'
+import {
+  SoldierRepositoryInMemory
+} from '@/domains/soldier/adapters/soldier.repository.inmemory.ts'
 
 export interface BattleViewModel {
   enemiesViewModel: EnemiesViewModel
@@ -40,7 +43,7 @@ defineProps<BattleViewModel>()
 
 const onAttack = (enemyName: string) => {
   const usecase = new BattleUsecase(EnemiesRepositoryInMemory.getInstance(), EnemyEventBus.getInstance())
-  usecase.execute(enemyName, 10)
+  usecase.execute(enemyName, SoldierRepositoryInMemory.getInstance().getSoldier().strength)
 }
 </script>
 

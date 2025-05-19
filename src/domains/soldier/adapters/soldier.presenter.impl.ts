@@ -3,6 +3,7 @@ import type { SoldierPresenter } from '../ports/soldier.presenter'
 
 export type SoldierViewModel = {
   gold: number
+  strenght: number
 }
 
 export class SoldierPresenterImpl implements SoldierPresenter {
@@ -10,6 +11,7 @@ export class SoldierPresenterImpl implements SoldierPresenter {
   presents(soldier: Soldier): void {
     this.callback({
       gold: soldier.gold,
+      strenght: soldier.strength,
     })
   }
 }

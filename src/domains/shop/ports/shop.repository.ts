@@ -1,3 +1,3 @@
 export interface ShopRepository {
-  buyWeapon(soldierId: string, weaponId:string, price: number): Promise<void>;
+  buyWeapon(soldierId: string, weaponId:string, price: number, strength): Promise<void>;
 }

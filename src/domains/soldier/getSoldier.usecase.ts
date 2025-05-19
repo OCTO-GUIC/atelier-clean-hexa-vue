@@ -4,14 +4,14 @@ import type { SoldierRepository } from './ports/soldier.repository'
 export class Soldier {
   constructor(
     private readonly _gold: number,
-    private readonly _strenght: number,
+    private readonly _strength: number,
   ) {}
 
   public get gold(): number {
     return this._gold
   }
-  public get strenght(): number {
-    return this._strenght
+  public get strength(): number {
+    return this._strength
   }
 }
 

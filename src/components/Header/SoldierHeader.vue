@@ -1,5 +1,6 @@
 <template>
-  <div>{{ soldierViewModel?.gold }}<img src="../../../public/images/gold.png" alt="gold" /></div>
+  <div>{{ soldierViewModel?.gold }}<img src="/images/gold.png" alt="gold" /></div>
+  <div>{{ soldierViewModel?.strenght }}<img src="/images/strength.svg" alt="puissance" /></div>
 </template>
 
 <script setup lang="ts">
@@ -11,10 +12,12 @@ import { SoldierRepositoryInMemory } from '@/domains/soldier/adapters/soldier.re
 import { GetSoldierUsecase } from '@/domains/soldier/getSoldier.usecase'
 import { onMounted, ref } from 'vue'
 import { ShopEventBus } from '@/domains/shop/shop.eventBus.ts'
+import { EnemyEventBus } from '@/domains/enemies/enemy.eventBus.ts'
 
 const soldierViewModel = ref<SoldierViewModel>()
 const getSoldierUsecase = new GetSoldierUsecase(SoldierRepositoryInMemory.getInstance())
 const shopEventBus = ShopEventBus.getInstance()
+const enemyBus = EnemyEventBus.getInstance()
 const getSoldier = () => {
   getSoldierUsecase.execute(
     new SoldierPresenterImpl((vm) => {
@@ -25,6 +28,9 @@ const getSoldier = () => {
 onMounted(() => {
   getSoldier()
   shopEventBus.subscribe('SoldierHeader', 'weaponBought', () => {
+    getSoldier()
+  })
+  enemyBus.subscribe('SoldierHeader', 'enemyBattle', () => {
     getSoldier()
   })
 })

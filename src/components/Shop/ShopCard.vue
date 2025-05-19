@@ -3,7 +3,7 @@
     <img :src="image" alt="" class="shopCard__imgWeapon" />
     <h2>{{ title }}</h2>
     <span class="shopCard__price">
-      Prix : {{ price }} <img src="../../../public/images/gold.png" class="shopCard__gold" />
+      Prix : {{ price }} <img src="/images/gold.png" class="shopCard__gold" />
     </span>
     <div class="shopCard__actions">
       <CommonButton
@@ -26,16 +26,17 @@ export interface ShopCardProps {
   title: string
   image: string
   price: number
+  strength: number
   addToCartButton: CommonButtonProps
 }
 
-const { title, image, addToCartButton, price } = defineProps<ShopCardProps>()
+const { title, image, addToCartButton, price, strength } = defineProps<ShopCardProps>()
 
 const shopEventBus = ShopEventBus.getInstance()
 const buyWeaponUseCase = new BuyWeaponUsecase(shopEventBus, new ShopRepositoryInmemory())
 
 const buy = () => {
-  buyWeaponUseCase.execute('soldier-1', price)
+  buyWeaponUseCase.execute('soldier-1', price, strength)
 }
 </script>
 

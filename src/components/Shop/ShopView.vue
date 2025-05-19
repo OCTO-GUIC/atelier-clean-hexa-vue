@@ -8,6 +8,7 @@
           :image="weapon.image"
           :add-to-cart-button="weapon.addToCartButton"
           :price="weapon.price"
+          :strength="weapon.strength"
         />
       </li>
     </ul>
@@ -42,8 +43,7 @@ h1 {
   flex-direction: column;
   justify-content: space-around;
   margin: auto;
-  margin: auto;
-  background-image: url('./public/images/shop.png');
+  background-image: url('/images/shop.png');
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;

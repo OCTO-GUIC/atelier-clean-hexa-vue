@@ -10,7 +10,7 @@
     <RouterView />
   </main>
   <footer>
-    <span>Dodo & Guigui</span><img src="../public/images/logo.svg" /><span>Octo Technology</span>
+    <span>Dodo & Guigui</span><img src="/images/logo.svg" alt="" /><span>Octo Technology</span>
   </footer>
 </template>
 

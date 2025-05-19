@@ -22,7 +22,6 @@ const getEnemies = () => {
   usecase.execute(
     new EnemiesPresenterImpl((viewModel) => {
       enemiesViewModel.value = viewModel
-      console.log(viewModel)
     }),
   )
 }

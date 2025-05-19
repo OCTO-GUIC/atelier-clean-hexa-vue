@@ -5,11 +5,12 @@ import type { ShopRepository } from '@/domains/shop/ports/shop.repository.ts'
 export class BuyWeaponUsecase {
   constructor(
     private readonly eventBus: EventBus<ShopEventMap>,
-    private readonly shopRepository: ShopRepository,
-  ) {}
+    private readonly shopRepository: ShopRepository
+  ) {
+  }
 
-  async execute(soldierId: string, price: number): Promise<void> {
-    await this.shopRepository.buyWeapon(soldierId, 'weaponId', price)
+  async execute(soldierId: string, price: number, strength: number): Promise<void> {
+    await this.shopRepository.buyWeapon(soldierId, 'weaponId', price, strength)
     this.eventBus.publish('weaponBought', { soldierId, price })
   }
 }

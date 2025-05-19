@@ -9,6 +9,7 @@ export type WeaponsCatalogItemViewModel = {
     disabled: boolean
     label: string
   }
+  strength: number
 }
 export type WeaponsCatalogViewModel = {
   items: WeaponsCatalogItemViewModel[]
@@ -22,12 +23,13 @@ export class WeaponsCataloguePresenter implements WeaponsPresenter {
     this.callback({
       items: weapons.map((w) => ({
         title: w.title,
-        image: `public/images/${w.image}`,
+        image: `/images/${w.image}`,
         price: w.price,
         addToCartButton: {
           disabled: !w.canBuy(amountOfGoldAvailable),
           label: 'Acheter',
         },
+        strength: w.strenght,
       })),
     })
   }
