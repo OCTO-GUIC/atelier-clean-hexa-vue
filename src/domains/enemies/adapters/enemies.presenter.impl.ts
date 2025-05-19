@@ -6,6 +6,7 @@ type EnemyViewModel = {
   avatar: string
   healthPoint: number
   awardGold: number
+  isAlive: boolean
 }
 
 export type EnemiesViewModel = { enemies: EnemyViewModel[] }
@@ -20,6 +21,7 @@ export class EnemiesPresenterImpl implements EnemiesPresenter {
         avatar: enemy.avatar,
         healthPoint: enemy.healthPoint,
         awardGold: enemy.awardGold,
+        isAlive: enemy.alive,
       })),
     })
   }

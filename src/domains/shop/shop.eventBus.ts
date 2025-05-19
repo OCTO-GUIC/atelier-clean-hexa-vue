@@ -1,29 +1,32 @@
-export type ShopEventMap = {
-  'weaponBought': { soldierId: string; price: number };
-}
-
-export type ShopEvent = keyof ShopEventMap;
-
 import { EventBus } from '@/shell/eventBus'
 
-export class ShopEventBus extends EventBus<ShopEventMap> {
-  private static instance: ShopEventBus | null = null;
+export type ShopEventMap = {
+  weaponBought: { soldierId: string; price: number }
+}
 
-  protected eventSubscribers: Record<keyof ShopEventMap, {
-    subscriberName: string
-    callback: (data: unknown) => void
-  }[]> = {
-    weaponBought: []
+export type ShopEvent = keyof ShopEventMap
+
+export class ShopEventBus extends EventBus<ShopEventMap> {
+  private static instance: ShopEventBus | null = null
+
+  protected eventSubscribers: Record<
+    keyof ShopEventMap,
+    {
+      subscriberName: string
+      callback: (data: unknown) => void
+    }[]
+  > = {
+    weaponBought: [],
   }
 
   private constructor() {
-    super();
+    super()
   }
 
   static getInstance() {
     if (!this.instance) {
-      this.instance = new ShopEventBus();
+      this.instance = new ShopEventBus()
     }
-    return this.instance;
+    return this.instance
   }
 }

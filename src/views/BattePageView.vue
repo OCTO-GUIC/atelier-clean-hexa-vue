@@ -1,15 +1,6 @@
 <template>
-  <h1>Battle</h1>
   <div v-if="!enemiesViewModel">Loading ...</div>
-  <div v-else>
-    <div v-for="enemy in enemiesViewModel.enemies" :key="enemy.name">
-      <span v-text="enemy.name" />
-      <span v-text="enemy.healthPoint" />
-      <img :src="enemy.avatar" :alt="enemy.name" />
-      <span v-text="enemy.awardGold" />
-      <hr />
-    </div>
-  </div>
+  <BattleView :enemies-view-model="enemiesViewModel" v-else />
 </template>
 
 <script setup lang="ts">
@@ -18,8 +9,10 @@ import {
   type EnemiesViewModel,
 } from '@/domains/enemies/adapters/enemies.presenter.impl'
 import { EnemiesRepositoryInMemory } from '@/domains/enemies/adapters/enemies.repository.inMemory'
+import { EnemyEventBus } from '@/domains/enemies/enemy.eventBus'
 import { GetAllEnnemies } from '@/domains/enemies/getAllEnemies.usecase'
 import { onMounted, ref } from 'vue'
+import BattleView from '../components/Battle/BattleView.vue'
 
 const enemiesViewModel = ref<EnemiesViewModel>()
 
@@ -35,5 +28,9 @@ const getEnemies = () => {
 
 onMounted(() => {
   getEnemies()
+  EnemyEventBus.getInstance().subscribe('Battle', 'enemyBattle', () => {
+    getEnemies()
+  })
+  console.log(enemiesViewModel.value)
 })
 </script>

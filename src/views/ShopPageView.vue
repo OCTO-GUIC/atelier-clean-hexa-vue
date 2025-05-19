@@ -21,7 +21,7 @@ const usecase = new GetAllWeaponsUsecase(new WeaponsRepositoryInMemory())
 
 const getCatalog = () => {
   usecase.execute(
-    SoldierRepositoryInMemory.getInstance().getSoldier().getGold(),
+    SoldierRepositoryInMemory.getInstance().getSoldier().gold,
     new WeaponsCataloguePresenter((weaponsCatalogViewModel) => {
       catalogViewModel.value = weaponsCatalogViewModel
     }),

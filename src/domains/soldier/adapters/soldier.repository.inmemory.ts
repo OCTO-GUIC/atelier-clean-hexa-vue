@@ -1,9 +1,9 @@
-import { Soldier } from '../getSoldierGold.usecase'
+import { Soldier } from '../getSoldier.usecase'
 import type { SoldierRepository } from '../ports/soldier.repository'
 
 export class SoldierRepositoryInMemory implements SoldierRepository {
   private static instance: SoldierRepositoryInMemory
-  private soldier: Soldier = new Soldier(1000)
+  private soldier: Soldier = new Soldier(1000, 0)
 
   private constructor() {}
 

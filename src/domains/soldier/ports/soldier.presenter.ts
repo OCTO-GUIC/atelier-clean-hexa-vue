@@ -1,4 +1,4 @@
-import type { Soldier } from '../getSoldierGold.usecase'
+import type { Soldier } from '../getSoldier.usecase'
 
 export interface SoldierPresenter {
   presents(soldier: Soldier): void

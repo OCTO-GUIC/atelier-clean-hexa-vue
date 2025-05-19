@@ -9,7 +9,7 @@ export class BuyWeaponUsecase {
   ) {}
 
   async execute(soldierId: string, price: number): Promise<void> {
-    await this.shopRepository.buyWeapon(soldierId,'weaponId', price)
-    this.eventBus.publish('weaponBought', { soldierId, price });
+    await this.shopRepository.buyWeapon(soldierId, 'weaponId', price)
+    this.eventBus.publish('weaponBought', { soldierId, price })
   }
 }
