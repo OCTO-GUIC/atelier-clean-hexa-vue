@@ -31,7 +31,7 @@ export class Enemy {
   }
 
   public attack(soldierStrenght: number) {
-    this._alive = soldierStrenght > this._healthPoint
+    this._alive = !(soldierStrenght > this._healthPoint)
   }
 }
 
