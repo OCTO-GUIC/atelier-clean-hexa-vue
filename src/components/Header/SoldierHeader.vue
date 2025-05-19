@@ -1,6 +1,10 @@
 <template>
-  <div>{{ soldierViewModel?.gold }}<img src="/images/gold.png" alt="gold" /></div>
-  <div>{{ soldierViewModel?.strenght }}<img src="/images/strength.svg" alt="puissance" /></div>
+  <div class="soldierHeader">
+    <div class="badge">{{ soldierViewModel?.gold }}<img src="/images/gold.png" alt="gold" /></div>
+    <div class="badge">
+      {{ soldierViewModel?.strenght }}<img src="/images/strength.svg" alt="puissance" />
+    </div>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -37,7 +41,12 @@ onMounted(() => {
 </script>
 
 <style scoped>
-div {
+.soldierHeader {
+  display: flex;
+  gap: 1rem;
+}
+
+.badge {
   padding: 0.25rem 0.5rem;
   display: flex;
   border-radius: 6px;
