@@ -34,14 +34,34 @@ header {
 }
 
 nav a {
+  position: relative;
   padding: 0 0.5rem;
   text-decoration: none;
   text-transform: uppercase;
   color: #fff;
+  font-size: 1.25rem;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 0;
+    bottom: -8px;
+    display: block;
+    width: 100%;
+    background: #fff;
+    transition: all ease-in-out 0.3s;
+  }
+
+  &:hover:before {
+    height: 4px;
+  }
 }
 
 main {
   background-color: #cda781;
+  overflow: hidden;
 }
 
 footer {
@@ -49,5 +69,9 @@ footer {
   justify-content: center;
   align-items: center;
   gap: 1rem;
+}
+
+.router-link-active {
+  font-weight: 700;
 }
 </style>

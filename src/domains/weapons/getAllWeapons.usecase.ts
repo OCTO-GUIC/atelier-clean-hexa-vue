@@ -13,12 +13,15 @@ export class Weapons {
   public get image(): string {
     return this._image
   }
-  public get strenght(): string {
+
+  public get strenght(): number {
     return this._strength
   }
+
   public get title(): string {
     return this._title
   }
+
   public get id(): string {
     return this._id
   }

@@ -34,6 +34,11 @@ h1 {
   text-transform: uppercase;
   font-weight: 700;
   font-size: 3.5rem;
+  background-color: rgba(255, 255, 255, 0.7);
+  width: fit-content;
+  margin: 0 auto;
+  padding: 0 2rem;
+  border-radius: 6px;
 }
 .shop {
   height: 100%;
@@ -59,6 +64,7 @@ h1 {
     display: block;
     width: 25%;
     background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 6px;
   }
 }
 </style>

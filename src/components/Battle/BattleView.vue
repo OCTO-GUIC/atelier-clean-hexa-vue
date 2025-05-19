@@ -3,22 +3,16 @@
     <h1>Battle</h1>
     <div class="test">
       <div v-for="enemy in enemiesViewModel.enemies" :key="enemy.name" class="ennemy">
-        <img src="/images/vilain.png" :alt="enemy.name" />
-        <div class="toto">
-          <h2 v-text="enemy.name" />
-          <div class="badge">
-            {{ enemy.healthPoint }}<img src="/images/epee.png" alt="gold" />
-          </div>
-        </div>
+        <CommonBadge :text="enemy.healthPoint" image-src="/images/epee.png" alt-text="strengh" />
+        <img :src="`/images/${enemy.img}`" :alt="enemy.name" />
+        <h2 v-text="enemy.name" />
         <div class="toto">
           <CommonButton
             :label="enemy.isAlive ? 'Attaquer' : 'Mort'"
             :on-click="() => onAttack(enemy.name)"
             :disabled="!enemy.isAlive"
           />
-          <div class="badge">
-            {{ enemy.awardGold }}<img src="/images/gold.png" alt="gold" />
-          </div>
+          <CommonBadge :text="enemy.awardGold" image-src="/images/gold.png" alt-text="gold" />
         </div>
       </div>
     </div>
@@ -31,9 +25,8 @@ import { type EnemiesViewModel } from '@/domains/enemies/adapters/enemies.presen
 import { EnemiesRepositoryInMemory } from '@/domains/enemies/adapters/enemies.repository.inMemory'
 import { BattleUsecase } from '@/domains/enemies/battle.usecase'
 import { EnemyEventBus } from '@/domains/enemies/enemy.eventBus'
-import {
-  SoldierRepositoryInMemory
-} from '@/domains/soldier/adapters/soldier.repository.inmemory.ts'
+import { SoldierRepositoryInMemory } from '@/domains/soldier/adapters/soldier.repository.inmemory.ts'
+import CommonBadge from '../commons/CommonBadge.vue'
 
 export interface BattleViewModel {
   enemiesViewModel: EnemiesViewModel
@@ -42,7 +35,10 @@ export interface BattleViewModel {
 defineProps<BattleViewModel>()
 
 const onAttack = (enemyName: string) => {
-  const usecase = new BattleUsecase(EnemiesRepositoryInMemory.getInstance(), EnemyEventBus.getInstance())
+  const usecase = new BattleUsecase(
+    EnemiesRepositoryInMemory.getInstance(),
+    EnemyEventBus.getInstance(),
+  )
   usecase.execute(enemyName, SoldierRepositoryInMemory.getInstance().getSoldier().strength)
 }
 </script>
@@ -54,10 +50,15 @@ h1 {
   text-transform: uppercase;
   font-weight: 700;
   font-size: 3.5rem;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 6px;
+  width: fit-content;
+  margin: 0 auto 4rem auto;
+  padding: 0 2rem;
 }
 
 .battle {
-  padding: 0 2rem;
+  padding: 2rem 2rem 0 2rem;
   margin: auto;
   height: 100%;
   width: 100%;
@@ -70,8 +71,9 @@ h1 {
 
 .test {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  gap: 4rem;
+  gap: 2rem;
 }
 
 .ennemy {
@@ -82,10 +84,13 @@ h1 {
   justify-content: center;
   padding: 1.5rem;
   background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 6px;
+  width: 100%;
 
   & img {
     object-fit: contain;
-    width: 100%;
+    height: 250px;
+    width: auto;
   }
 
   & h2 {
@@ -94,24 +99,21 @@ h1 {
   }
 }
 
-.badge {
-  padding: 0.25rem 0.5rem;
-  display: flex;
-  border-radius: 6px;
-  gap: 0.5rem;
-  background-color: #fff;
-  align-items: center;
-  color: black;
-
-  & img {
-    height: 2.5rem;
-  }
-}
-
 .toto {
   display: flex;
   gap: 2rem;
   justify-content: space-around;
   width: 100%;
+}
+
+@media (min-width: 48rem) {
+  .test {
+    flex-direction: row;
+  }
+
+  .ennemy {
+    max-width: 28%;
+    min-width: 28%;
+  }
 }
 </style>

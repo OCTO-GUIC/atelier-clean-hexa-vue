@@ -7,6 +7,7 @@ type EnemyViewModel = {
   healthPoint: number
   awardGold: number
   isAlive: boolean
+  img: string
 }
 
 export type EnemiesViewModel = { enemies: EnemyViewModel[] }
@@ -22,6 +23,7 @@ export class EnemiesPresenterImpl implements EnemiesPresenter {
         healthPoint: enemy.healthPoint,
         awardGold: enemy.awardGold,
         isAlive: enemy.alive,
+        img: enemy.avatar,
       })),
     })
   }
