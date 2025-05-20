@@ -6,7 +6,7 @@
         <CommonBadge :text="enemy.healthPoint" image-src="/images/epee.png" alt-text="strengh" />
         <img :src="`/images/${enemy.img}`" :alt="enemy.name" />
         <h2 v-text="enemy.name" />
-        <div class="toto">
+        <div class="container">
           <CommonButton
             :label="enemy.isAlive ? 'Attaquer' : 'Mort'"
             :on-click="() => onAttack(enemy.name)"
@@ -99,7 +99,7 @@ h1 {
   }
 }
 
-.toto {
+.container {
   display: flex;
   gap: 2rem;
   justify-content: space-around;
