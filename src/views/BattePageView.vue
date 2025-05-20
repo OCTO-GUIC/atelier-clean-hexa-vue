@@ -13,6 +13,9 @@ import { EnemyEventBus } from '@/domains/enemies/enemy.eventBus'
 import { GetAllEnnemies } from '@/domains/enemies/getAllEnemies.usecase'
 import { onMounted, ref } from 'vue'
 import BattleView from '../components/Battle/BattleView.vue'
+import {
+  SoldierRepositoryInMemory
+} from '@/domains/soldier/adapters/soldier.repository.inmemory.ts'
 
 const enemiesViewModel = ref<EnemiesViewModel>()
 
@@ -20,6 +23,7 @@ const usecase = new GetAllEnnemies(EnemiesRepositoryInMemory.getInstance())
 
 const getEnemies = () => {
   usecase.execute(
+    SoldierRepositoryInMemory.getInstance().getSoldier().strength,
     new EnemiesPresenterImpl((viewModel) => {
       enemiesViewModel.value = viewModel
     }),

@@ -7,8 +7,9 @@ export class Enemy {
     private readonly _avatar: string,
     private readonly _healthPoint: number,
     private readonly _awardGold: number,
-    private _alive: boolean,
-  ) {}
+    private _alive: boolean
+  ) {
+  }
 
   public get awardGold(): number {
     return this._awardGold
@@ -36,10 +37,11 @@ export class Enemy {
 }
 
 export class GetAllEnnemies {
-  constructor(private readonly repository: EnemiesRepository) {}
+  constructor(private readonly repository: EnemiesRepository) {
+  }
 
-  async execute(presenter: EnemiesPresenter): Promise<void> {
+  async execute(strengthOfSoldier: number, presenter: EnemiesPresenter): Promise<void> {
     const ennemies = await this.repository.getAllEnnemies()
-    presenter.present(ennemies)
+    presenter.present(ennemies, strengthOfSoldier)
   }
 }
