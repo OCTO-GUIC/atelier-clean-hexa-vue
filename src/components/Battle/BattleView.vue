@@ -10,7 +10,7 @@
           <CommonButton
             :label="enemy.isAlive ? 'Attaquer' : 'Mort'"
             :on-click="() => onAttack(enemy.name)"
-            :disabled="!enemy.isAlive"
+            :disabled="!enemy.isAlive || !enemy.canBeAttacked"
           />
           <CommonBadge :text="enemy.awardGold" image-src="/images/gold.png" alt-text="gold" />
         </div>
